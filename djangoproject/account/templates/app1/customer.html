@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Customer Form</h1>
+            <div class="form-group">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>
+                        <div class="alert alert-success alert-dismissable">{{ message }}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <form method="POST" action="" >
+                {% csrf_token %}
+                <div class="col-md-5">
+                    {{ form.as_p}}
+                    <button class="btn btn-primary"  type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        
+    </body>
+</html>
