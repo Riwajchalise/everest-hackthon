@@ -1,0 +1,90 @@
+ {% extends "base.html" %}
+{% block content %}
+
+<style type="text/css">
+
+.field{
+	/*width: 300px;*/
+text-align: center;
+}
+textarea{
+	margin-bottom: 30px;
+	width: 800px!important;
+	text-align: center;
+}
+  .main_content {
+    background: white;
+    margin-top: 30px;
+    margin: 30px;
+    text-align: center;
+}
+	.te{
+		width: 400px;
+		margin-bottom: 10px!important;
+	}
+
+  .main_content {
+    margin-top: 30px;
+    padding: 60px;
+    /*text-align: center;*/
+border-left: 3px solid #2185d0;
+}
+
+</style>
+
+<script type="text/javascript">
+	$(".login_btn").on("click", function(){
+		window.open("index.html", "_self");
+	});
+</script>
+
+
+<div class="ui two column centered grid">
+  <div class="column"></div>
+  <div class="two column centered row">
+    <div class="column">
+
+
+<!-- <div class="box"></div> -->
+<div class="main_content">
+
+<h4 class="ui header">Your instutional profile has been created. In order to verify your identity, our support team will contact you through the contact you provided. After that, you can start receiving online applications.</h4>
+<br><br>
+<!-- <div class="ui form">
+  <div class="field">
+    <label>About Your Institution</label>
+    <textarea></textarea>
+  </div>
+  </div>
+ -->
+<br>
+<button class="ui primary button">
+Next
+</button>
+
+<br>
+<br>
+</div>
+
+<script type="text/javascript">
+      $(".login_btn").on("click", function(){
+    window.open("dash_user.html", "_self");
+  });
+
+  $(".register_comp").on("click", function(){
+    window.open("create_page.html", "_self");
+  });
+
+    $(".register_stud").on("click", function(){
+    window.open("sign_up.html", "_self");
+  });
+
+</script>
+
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

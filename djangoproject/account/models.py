@@ -22,7 +22,9 @@ class Institute(models.Model):
     description = models.CharField(max_length=255)
     website = models.CharField(max_length=255)
     photo = models.FileField(upload_to='institute')
-    # password = models.CharField(max_length=255)
+    is_verified=models.BooleanField(default=False)
+    phone_number=models.CharField(max_length=10, default=8989898989)
+    password = models.CharField(max_length=255, default=123)
 
 
 class Student(models.Model):
@@ -43,7 +45,7 @@ class Student(models.Model):
 class InstituteForm(ModelForm):
     class Meta:
         model = Institute
-        fields = ['institution_name', 'address', 'level', 'description', 'website', 'photo']
+        fields = ['institution_name', 'address', 'level', 'description', 'website', 'photo','phone_number']
 
 
 class StudentForm(ModelForm):
@@ -61,5 +63,5 @@ class Applicants(models.Model):
 
 class Admission(models.Model):
     institute = models.ForeignKey(Institute)
-    status = models.CharField(max_length=4)
+    status = models.CharField(max_length=255)
     deadline = models.DateField()

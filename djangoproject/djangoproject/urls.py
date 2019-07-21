@@ -31,8 +31,11 @@ urlpatterns = [
     url(r'^student-dashboard', views.student_dashboard),
     url(r'^institute-dashboard', views.institute_dashboard),
     url(r'^institute/profile/(?P<id>\d+)/', views.institute_profile),
+    url(r'^student/profile/(?P<id>\d+)/', views.student_profile),
     url(r'^login', views.login),
     url(r'^apply', views.apply),
+    url(r'^open-admission', views.open_admission),
+    url(r'^close-admission', views.close_admission),
     url(r'^logout/', views.logout),
 ]
 if settings.DEBUG is True:

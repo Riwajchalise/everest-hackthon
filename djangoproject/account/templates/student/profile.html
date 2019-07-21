@@ -1,10 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+    <style type="text/css">
 
-</body>
-</html>
+        .divided {
+            width: 700px;
+            padding: 5px;
+            border-bottom: 1px solid lightgrey;
+        }
+
+        ._club_img {
+            height: 200px;
+            width: auto;
+            clear: both;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <div class="header">
+        <div class="menu_left">
+        </div>
+    </div>
+
+    <style type="text/css">
+        .main_content {
+            margin-top: 30px;
+            padding: 60px;
+            /*text-align: center;*/
+            border-left: 3px solid #2185d0;
+        }
+
+        input {
+            width: 300px;
+            margin-bottom: 10px !important;
+            margin-left: 20px;
+        }
+
+        .count {
+            float: right;
+        }
+    </style>
+
+    <div class="ui two column centered grid">
+    <div class="column"></div>
+    <div class="two column centered row">
+    <div class="column">
+    <div class="ui breadcrumb">
+        <a class="section" href="/institute-dashboard">Home</a>
+        <span class="divider">/</span>
+
+        <div class="active section">{{ student.user.first_name }} {{ student.user.last_name }}</div>
+    </div>
+    <div class="ui logout breadcrumb">
+        <a class="section" href="/logout/">Logout</a>
+        <a class="section pro_link" href="#">Profile</a>
+    </div>
+    <style type="text/css">
+        .section.pro_link {
+            margin-left: 15px !important;
+        }
+
+        .logout {
+            float: right;
+            margin-right: -20px !important;
+        }
+    </style>
+              <div class="main_content">
+
+<h1 class="ui header"> {{ student.user.first_name }} {{ student.user.last_name }}</h1>
+<br>
+<br>
+
+<table class="ui single line table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+           <th>Address</th>
+              <th>Date of Birth</th>
+      <th>Email address</th>
+      <th>Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ student.user.first_name }} {{ student.user.last_name }}</td>
+      <td>{{ student.gender }}</td>
+      <td>{{ student.address }}</td>
+    <td>{{ student.DOB }}</td>
+      <td>{{ student.user.email }}</td>
+      <td>{{ student.phone_number }}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<b>Parents details</b>
+
+<table class="ui single line table">
+  <thead>
+    <tr>
+          <th>Father's name</th>
+      <th>Email address</th>
+      <th>Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ student.father_name }}</td>
+      <td>{{ student.father_email }}</td>
+      <td>{{ student.phone_number }}</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+
+<table class="ui single line table">
+  <thead>
+    <tr>
+          <th>Mother's name</th>
+      <th>Email address</th>
+      <th>Phone Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> {{ student.mother_name }}</td>
+      <td>{{ student.mother_email }}</td>
+      <td>{{ student.mother_name }}</td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+{#<b>Academic details</b>#}
+
+{#<table class="ui single line table">#}
+{#  <thead>#}
+{#    <tr>#}
+{#          <th>School</th>#}
+{#             <th>School's address</th>#}
+{#      <th>GPA</th>#}
+{#      <th>Stream</th>#}
+{#        <th>Interested faculty</th>#}
+{#    </tr>#}
+{#  </thead>#}
+{#  <tbody>#}
+{#    <tr>#}
+{#      <td>John Lilki</td>#}
+{#      <td>September 14, 2013</td>#}
+{#      <td>jhlilk22@yahoo.com</td>#}
+{#      <td>September 14, 2013</td>#}
+{#      <td>jhlilk22@yahoo.com</td>#}
+{#    </tr>#}
+{##}
+{#  </tbody>#}
+{#</table>#}
+
+
+</div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

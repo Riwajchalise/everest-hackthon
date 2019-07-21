@@ -1,5 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
+    <style type="text/css">
+  .main_content {
+    margin-top: 30px;
+    padding: 60px;
+    /*text-align: center;*/
+
+border-left: 3px solid #2185d0;
+}
+  input{
+    width: 300px;
+    margin-bottom: 10px!important;
+    margin-left: 20px;
+  }
+</style>
+
+<div class="ui two column centered grid">
+  <div class="column"></div>
+  <div class="two column centered row">
+    <div class="column">
+
+        <div class="main_content">
+<h4 class="ui header">You can directly create a student account. Fill up the following fields and we are good to go!</h4>
 
 <form method="POST" action="/student-registration" enctype="multipart/form-data">
 {% csrf_token %}
@@ -129,7 +151,8 @@ Parent's information
 
 
 <button class="ui primary button" type="submit">
-Next
+Submit
 </button>
 </form>
+            </div>
 {% endblock %}

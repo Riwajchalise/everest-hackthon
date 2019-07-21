@@ -1,28 +1,63 @@
 {% extends "base.html" %}
 {% block content %}
-    <style type="text/css">
+<style type="text/css">
 
-        .divided {
-            width: 700px;
-            padding: 5px;
-            border-bottom: 1px solid lightgrey;
-        }
+  .divided{
+    width: 700px;
+    padding: 5px;
+    border-bottom: 1px solid lightgrey;
+  }
 
-        ._club_img {
-            height: 200px;
-            width: auto;
-            clear: both;
-            margin-bottom: 20px;
-        }
-    </style>
+    ._club_img{
+    height: 200px;
+    width: auto;clear: both;
+    margin-bottom: 20px;
+  }
+</style>
 
-    <div class="header">
-        <div class="menu_left">
-        </div>
-    </div>
+<div class="header">
+  <div class="menu_left">
+  </div>
+</div>
 
+<style type="text/css">
+  .main_content {
+    margin-top: 30px;
+    padding: 60px;
+    /*text-align: center;*/
+border-left: 3px solid #2185d0;
+}
+
+.section.pro_link{
+  margin-left: 15px!important;
+}
+  input{
+    width: 300px;
+    margin-bottom: 10px!important;
+    margin-left: 20px;
+  }
+</style>
+
+<div class="ui two column centered grid">
+  <div class="column"></div>
+  <div class="two column centered row">
+    <div class="column">
+      <div class="ui breadcrumb">
+  <a class="section" href="#">Home</a>
+  <span class="divider">/</span>
+</div>
+      <div class="ui logout breadcrumb">
+  <a class="section">Logout</a>
+  <a class="section pro_link" href="/student/profile/{{ user.id }}/">Profile</a>
+</div><style type="text/css">
+  .logout{
+float: right;
+margin-right: -20px!important;
+}
+</style>
     <div class="ui divided items">
         {% for each in institute %}
+            {%  if each.is_verified  %}
             <div class="item">
                 <div class="image">
                     <img src="{{ MEDIA_URL }}{{ each.photo }}" class="_club_img">
@@ -30,7 +65,10 @@
                 <div class="content">
                     <a class="header">{{ each.institution_name }}</a>
                     <div class="description">
-                        <p>{{ each.description }}</p>
+                        <p>Ea vis sale denique, vel consulatu inciderint et. Nec nisl habeo etiam ea. Mea facilis minimum invidunt ad. Et omittam assueverit cum, per ad movet quodsi legendos. Omnes soleat iudicabit ex vis. Esse insolens no mea.
+Eu reque erroribus eam. Nam no diam consulatu. Quaeque habemus reprimique id eum, eu mea affert eleifend repudiare. Mei everti consulatu an. Per cu epicuri nostrum. Usu tantas adolescens in, sea munere soleat epicuri ne.
+Audiam oporteat ocurreret id pri. Eam rebum salutandi eu, cum ei vide dicunt, ut debet voluptaria vel. Iisque propriae periculis has no. Causae salutandi ut his, ex agam lorem nec.
+Reque nusquam appareat no sea. Ex impetus sapientem quaerendum vis, est ad veniam diceret iracundia. Ea tractatos maluisset mea. Pri zril iracundia mediocritatem id, debitis splendide conclusionemque nam an, id convenire facilisis gubergren sit./p>
                     </div>
                     <div class="extra">
                         <a class="ui right floated primary btn_see_more button" href="/institute/profile/{{each.id}}/">
@@ -40,14 +78,9 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
 
     </div>
-    <script type="text/javascript">
-
-        $(".btn_see_more").on("click", function () {
-            window.open("apply.html", "_self");
-        });
-    </script>
 
 {% endblock %}
