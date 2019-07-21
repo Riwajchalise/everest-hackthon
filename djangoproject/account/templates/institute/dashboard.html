@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+    <a href="/logout/">Logout</a>
+<h1 class="ui header">Welcome to your Dashboard</h1>
+<h4 class="ui header">Following is the list of students who submitted application.</h4>
+
+<div class="main_content">
+
+<div class="ui relaxed divided list">
+  <div class="item">
+
+    <div class="content">
+      <a class="header">Siddhartha Neupane</a>
+{#      <div class="description">Updated 10 mins ago</div>#}
+    </div>
+  </div>
+  <div class="item">
+
+    <div class="content">
+      <a class="header">Semantic-Org/Semantic-UI-Docs</a>
+      <div class="description">Updated 22 mins ago</div>
+    </div>
+  </div>
+  <div class="item">
+
+    <div class="content">
+      <a class="header">Semantic-Org/Semantic-UI-Meteor</a>
+      <div class="description">Updated 34 mins ago</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<style type="text/css">
+	.main_content {
+    background: white;
+    margin-top: 30px;
+    margin: 30px;
+    /*text-align: center;*/
+}
+	input{
+		width: 300px;
+		margin-bottom: 10px!important;
+	}
+</style>
+
+{% endblock %}

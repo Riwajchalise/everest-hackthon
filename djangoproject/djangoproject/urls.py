@@ -28,7 +28,11 @@ urlpatterns = [
     url(r'^register-institute/',  TemplateView.as_view(template_name='institute/register.html')),
     url(r'^institute-registration', views.register_institute),
     url(r'^student-registration', views.register_student),
+    url(r'^student-dashboard', views.student_dashboard),
+    url(r'^institute-dashboard', views.institute_dashboard),
+    url(r'^institute/profile/(?P<id>\d+)/', views.institute_profile),
     url(r'^login', views.login),
+    url(r'^apply', views.apply),
     url(r'^logout/', views.logout),
 ]
 if settings.DEBUG is True:

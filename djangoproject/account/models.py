@@ -50,4 +50,16 @@ class StudentForm(ModelForm):
     class Meta:
         model = Student
         fields = ['gender', 'DOB', 'phone_number', 'level', 'father_name', 'mother_name', 'father_phone',
-                  'mother_phone', 'father_email', 'mother_email','photo']
+                  'mother_phone', 'father_email', 'mother_email', 'photo']
+
+
+class Applicants(models.Model):
+    student = models.ForeignKey(Student)
+    institute = models.ForeignKey(Institute)
+    date = models.DateField()
+
+
+class Admission(models.Model):
+    institute = models.ForeignKey(Institute)
+    status = models.CharField(max_length=4)
+    deadline = models.DateField()

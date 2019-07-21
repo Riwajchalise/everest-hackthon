@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<style type="text/css">
+  ._club_img{
+    height: 200px;
+    width: auto;clear: both;
+    margin-bottom: 20px;
+  }
+  .list_item{
+    display: inline-flex;
+  }
+  .apply_content{
+    width: 100%;
+  }
+</style>
+ <div class="list_item">
+ <img src="/{{ MEDIA_URL }}{{ institute.photo }}" class="_club_img">
+<div class="details_item"><h3>{{ institute.institution_name }} </h3><a href="//{{ institute.website }}" target="_blank">website</a><br>
+<label>Phone number:</label><br>
+<label>Contact email: {{ institute.user.username }}</label><br>
+<label>Physical Address: {{ institute.address }}</label><br>
+<div class="apply_content">{{ institute.description }}
+</div>
+    <form type="post" action="/apply">
+        <input type="hidden" name="institute" value="{{ institute.id }}">
+        <input type="hidden" name="user" value="{{ user.get_username }}">
+        <button class="ui button btn_apply" type="submit">Apply</button>
+    </form>
+</div>
+ </div>
+      </div>
+</div>
+
+{% endblock %}

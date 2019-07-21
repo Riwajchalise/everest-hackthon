@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from datetime import date
 
 from .models import *
 
@@ -26,17 +27,15 @@ def register_institute(request):
             institute.save()
 
         auth.login(request, user)
-        return render(request, 'app1/welcome.html')
+        return render(request, 'institute/dashboard.html')
 
-    return render(request, 'institute/dashboard.html')
+    return render(request, '/institute-dashboard')
 
 
 def register_student(request):
     if request.method == 'POST':
-        print("heh?")
         form = StudentForm(request.POST, request.FILES)
         if form.is_valid():
-            print("heh")
             password = request.POST['password']
             username = request.POST['email']
             user = User(email=request.POST['email'], is_student=1, password=password, username=username,
@@ -53,7 +52,7 @@ def register_student(request):
             student.save()
             auth.login(request, user)
 
-    return render(request, 'app1/welcome.html')
+    return render(request, '/student-dashboard')
 
 
 def login(request):
@@ -69,7 +68,7 @@ def login(request):
                 if user.is_institute:
                     return render(request, 'institute/dashboard.html')
                 else:
-                    return render(request, 'institute/dashboard.html')
+                    return render(request, '/student-dashboard/')
         except:
             print('hey?')
             messages.error(request, 'Username or password didn\'t match.')
@@ -79,8 +78,32 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
-#
-#
+
+
+@login_required(login_url="/")
+def student_dashboard(request):
+    institute = Institute.objects.all()
+    return render(request, 'student/dashboard.html', {'institute': institute})
+
+
+@login_required(login_url="/")
+def institute_dashboard(request):
+    institute = Student.objects.all()
+    return render(request, 'institute/dashboard.html', {'institute': institute})
+
+
+def institute_profile(request, id):
+    institute = Institute.objects.get(id=id)
+    return render(request, 'institute/profile.html', {'institute': institute})
+
+
+def apply(request):
+    user = User.objects.get(username=request.POST['user'])
+    student = Student.objects.get(user=user)
+    institute = Institute.objects.get(id=request.POST['institute'])
+    applicants = Applicants(student=student, institute=institute, date=date.today())
+    applicants.save()
+    return HttpResponseRedirect("/institute/profile/"+request.POST['institute'])
 # @login_required(login_url="/")
 # def home(request):
 #     return render(request, 'app1/home.html')
