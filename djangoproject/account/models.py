@@ -1,32 +1,53 @@
+from __future__ import unicode_literals
+
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+from django.forms import ModelForm
 
-class Device(models.Model):
 
-    type = models.CharField(max_length=200, blank=False)
-    price = models.IntegerField()
+class User(AbstractUser):
+    is_student = models.BooleanField(default=False)
+    is_institute = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=255, null=True)
+    last_name = models.CharField(null=True, max_length=255)
 
-    choices = (
-        ('AVAILABLE', 'Item ready to be purchased'),
-        ('SOLD', 'Item already purchased'),
-        ('RESTOCKING', 'Item restocking in few days')
-    )
 
-    status = models.CharField(max_length=10, choices=choices, default='SOLD')
-    issues = models.CharField(max_length=50, default="No Issues")
+class Institute(models.Model):
+    user = models.OneToOneField(User)
+    institution_name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    level = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    website = models.CharField(max_length=255)
+    photo = models.FileField(upload_to='institute')
+    # password = models.CharField(max_length=255)
 
+
+class Student(models.Model):
+    user = models.OneToOneField(User)
+    gender = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=12)
+    DOB = models.DateField()
+    father_name = models.CharField(max_length=255)
+    mother_name = models.CharField(max_length=255)
+    father_phone = models.CharField(max_length=255)
+    mother_phone = models.CharField(max_length=255)
+    father_email = models.CharField(max_length=255)
+    mother_email = models.CharField(max_length=255)
+    level = models.CharField(max_length=255)
+    photo = models.FileField(upload_to='student')
+
+
+class InstituteForm(ModelForm):
     class Meta:
-        abstract = True
+        model = Institute
+        fields = ['institution_name', 'address', 'level', 'description', 'website', 'photo']
 
-    def __str__(self):
-        return 'Type: {0} Price: {1}'.format(self.type, self.price)
 
-class Desktops(Device):
-    pass
-
-class Laptops(Device):
-    pass
-
-class Mobiles(Device):
-    pass
+class StudentForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ['gender', 'DOB', 'phone_number', 'level', 'father_name', 'mother_name', 'father_phone',
+                  'mother_phone', 'father_email', 'mother_email','photo']

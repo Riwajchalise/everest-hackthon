@@ -1,67 +1,90 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib import auth, messages
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from django.http import HttpRequest, HttpResponseRedirect
 from .models import *
-from .forms import *
-from django.contrib.auth.models import User
-from django.contrib import messages
-from django.contrib import auth
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.decorators import login_required
 
 
+def register_institute(request):
+    if request.method == 'POST':
 
-def reg(request):
-    if request.method == 'POST' :
-        form = cust_reg_form(request.POST)
+        form = InstituteForm(request.POST, request.FILES)
+        password = request.POST['password']
+        username = request.POST['email']
+        user = User(email=username, password=password, is_institute=1, username=username)
+        user.save()
         if form.is_valid():
-            username = form.cleaned_data['username']
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
-            usr = auth.authenticate(username=username, password=password)
-            auth.login(request, usr)
-            return render(request, 'app1/welcome.html')
+            institute = Institute(institution_name=form.cleaned_data['institution_name'],
+                                  address=form.cleaned_data['address'],
+                                  level=form.cleaned_data['level'], website=form.cleaned_data['website'],
+                                  photo=form.cleaned_data['photo'], user=user)
+            institute.save()
 
-    else:
-        form = cust_reg_form()
-    return render(request, 'app1/reg.html', {'form': form})
+        auth.login(request, user)
+        return render(request, 'app1/welcome.html')
+
+    return render(request, 'institute/dashboard.html')
+
+
+def register_student(request):
+    if request.method == 'POST':
+        print("heh?")
+        form = StudentForm(request.POST, request.FILES)
+        if form.is_valid():
+            print("heh")
+            password = request.POST['password']
+            username = request.POST['email']
+            user = User(email=request.POST['email'], is_student=1, password=password, username=username,
+                        first_name=request.POST['first_name'], last_name=request.POST['last_name'])
+            user.save()
+            student = Student(gender=form.cleaned_data['gender'], DOB=form.cleaned_data['DOB'],
+                              phone_number=form.cleaned_data['phone_number'], level=form.cleaned_data['level'],
+                              father_email=form.cleaned_data['father_email'], photo=form.cleaned_data['photo'],
+                              mother_email=form.cleaned_data['mother_email'], user=user,
+                              father_name=form.cleaned_data['father_name'],
+                              father_phone=form.cleaned_data['father_phone'],
+                              mother_name=form.cleaned_data['mother_name'],
+                              mother_phone=form.cleaned_data['mother_phone'])
+            student.save()
+            auth.login(request, user)
+
+    return render(request, 'app1/welcome.html')
 
 
 def login(request):
-    if request.method == "POST" :
-        username = request.POST['user']
-        password = request.POST['psk']
+    if request.method == "POST":
+        username = request.POST['email']
+        password = request.POST['password']
         try:
-            user = auth.authenticate(username=username, password=password)
+            user = User.objects.filter(username=username, password=password).first()
+            print(user)
             if user is not None:
+                print('bhakoho?')
                 auth.login(request, user)
-                return render(request, 'app1/welcome.html')
-            else:
-                messages.error(request, 'Username or password didn\'t match.')
+                if user.is_institute:
+                    return render(request, 'institute/dashboard.html')
+                else:
+                    return render(request, 'institute/dashboard.html')
+        except:
+            print('hey?')
+            messages.error(request, 'Username or password didn\'t match.')
 
-        except auth.ObjectDoesNotExist:
-            print("invalid user")
 
-    return render(request, 'app1/login.html')
-
-
-@login_required(login_url="/account/login")
+@login_required(login_url="/")
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
-
-# @login_required(login_url="/app1/login")
-def home(request):
-    return render(request, 'app1/home.html')
-
-# @login_required(login_url="/app1/login")
-# def welcome(request):
-#     return render(request, 'app1/welcome.html')
-
-
+#
+#
+# @login_required(login_url="/")
+# def home(request):
+#     return render(request, 'app1/home.html')
+#
+# # @login_required(login_url="/")
+# # def welcome(request):
+# #     return render(request, 'app1/welcome.html')

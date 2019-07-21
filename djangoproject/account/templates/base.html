@@ -1,0 +1,38 @@
+{% load static %}
+<html>
+<head>
+    <title>NepForm</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+<link rel="stylesheet" type="text/css" href="css/semantic.min.css">
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/semantic.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/semantic.min.css' %}">
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+<body>
+<div class="container">
+    <div class="form-group">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>
+                        <div class="alert alert-danger alert-dismissable">{{ message }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    {% block content %}
+
+    {% endblock %}
+</div>
+</body>
+</html>

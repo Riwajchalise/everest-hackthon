@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style type="text/css">
+	.main_content {
+    background: white;
+    margin-top: 30px;
+    padding: 30px;
+    text-align: center;
+}
+	input{
+		width: 300px;
+		margin-bottom: 10px!important;
+	}
+</style>
+
+    <form method="post" action="/login">
+    {% csrf_token %}
+        <div class="main_content">
+            <div class="ui input">
+                <input type="text" placeholder="Email" name="email">
+            </div>
+            <br>
+            <div class="ui input">
+                <input type="Password" placeholder="Password" name="password">
+            </div>
+            <br><br>
+            <button class="ui primary button">
+                Login
+            </button>
+
+            <br>
+            <br>
+            New member?
+            <br><br>
+            <a class="ui button" href="/register-student/">Register as a Student</a>
+            or
+            <a class="ui button" href="/register-institute/">
+                Register as a Company
+            </a>
+
+        </div>
+    </form>
+{% endblock %}

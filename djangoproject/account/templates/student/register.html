@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="POST" action="/student-registration" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="ui input">
+  <input type="text" placeholder="Your Address" name="address">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Phone number" name="phone_number">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Your Email Address" name="email">
+</div>
+
+<div class="ui input">
+  <input type="text" placeholder="First Name" name="first_name">
+</div>
+    <div class="ui input">
+  <input type="text" placeholder="Last Name" name="last_name">
+</div>
+    <div class="ui input">
+  <input type="text" placeholder="Password" name="password">
+</div>
+<div class="ui input">
+  <input type="date" placeholder="Date of birth (YYYY/MM/DD)" name="DOB">
+</div>
+<div class="ui form">
+  <div class="grouped fields">
+    <label>Gender</label>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="gender" value="Male" checked="checked">
+        <label>Male</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="gender" value="Female">
+        <label>Female</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="gender" value="Other">
+        <label>Others</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+Parent's information
+<br>
+
+
+<div class="ui input">
+  <input type="text" placeholder="Father's name" name="father_name">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Phone" name="father_phone">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Email address" name="father_email">
+</div>
+
+<br><br>
+
+<div class="ui input">
+  <input type="text" placeholder="Mothers's name" name="mother_name">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Phone number" name="mother_phone">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Email address" name="mother_email">
+</div>
+
+<hr>
+
+<div class="ui form">
+  <div class="grouped fields">
+    <label>Level</label>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="level" checked="checked" value="Middle School">
+        <label>Middle School</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="level" value="High School">
+        <label>High School</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input type="radio" name="level" value="College">
+        <label>College</label>
+      </div>
+    </div>
+  </div>
+    <div class="ui input">
+        <label>Photo</label>
+        <input type="file" name="photo">
+    </div>
+</div>
+
+<hr>
+<!-- 
+
+<div class="ui input">
+  <input type="text" placeholder="Username or Phone number">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="text">
+</div>
+
+<div class="ui input">
+  <input type="text" placeholder="Your full name">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="Username or Phone number">
+</div>
+<div class="ui input">
+  <input type="text" placeholder="text">
+</div>
+ -->
+
+
+<button class="ui primary button" type="submit">
+Next
+</button>
+</form>
+{% endblock %}

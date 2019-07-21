@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" action="/institute-registration" enctype="multipart/form-data">
+{% csrf_token %}
+    <div class="main_content">
+
+        <div class="ui te input">
+            <input type="text" placeholder="Institution Email Address" name="email">
+        </div>
+        <br>
+        <div class="ui te input">
+            <input type="Password" placeholder="Password" name="password">
+        </div>
+        <br>
+        <div class="ui te input">
+            <input type="text" placeholder="Name of your institution" name="institution_name">
+        </div>
+        <br>
+        <div class="ui te input">
+            <input type="text" placeholder="Address" name="address">
+        </div>
+        <br>
+        <div class="ui te input">
+            <input type="text" placeholder="Phone Number" name="number">
+        </div>
+        <br><br>
+        <div class="ui te labeled input">
+            <div class="ui label">
+                http://
+            </div>
+            <input type="text" placeholder="yourwebsite.com" name="website">
+        </div>
+        <br>
+        <div class="ui te input">
+            <select name="level">
+                <option value="High School">High School</option>
+                <option value="Middle School">Middle School</option>
+                <option value="School">School</option>
+                <option value="College">College</option>
+                <option value="All">All</option>
+            </select>
+        </div>
+        <br>
+
+        <div class="ui te input">
+            <input type="file" name="photo">
+        </div>
+        <br>
+        <div class="ui form">
+            <div class="field">
+                <label>About Your Institution</label>
+                <textarea name="description"></textarea>
+            </div>
+        </div>
+        <br>
+
+
+        <br>
+        <button class="ui primary button">
+            Register
+        </button>
+
+        <br>
+        <br>
+        Already have an account?
+        <br><br>
+        <button class="ui button">
+            Login
+        </button>
+
+
+    </div>
+
+    <style type="text/css">
+        .main_content {
+            background: white;
+            margin-top: 30px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .field {
+            /*width: 300px;*/
+            text-align: center;
+        }
+
+        textarea {
+            margin-bottom: 30px;
+            width: 800px !important;
+            text-align: center;
+        }
+
+        .te {
+            width: 300px;
+            margin-bottom: 10px !important;
+        }
+    </style>
+
+{% endblock %}

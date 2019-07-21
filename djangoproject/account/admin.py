@@ -5,9 +5,10 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import *
-from import_export.admin import ImportExportModelAdmin
+# from import_export.admin import ImportExportModelAdmin
 
-@admin.register(Desktops, Laptops, Mobiles)
-class ViewAdmin(ImportExportModelAdmin):
-    pass
+# @admin.register(Desktops, Laptops, Mobiles)
+# class ViewAdmin(ImportExportModelAdmin):
+# #     pass
 
+#
